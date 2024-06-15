@@ -1,0 +1,4 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.shawen.common.exception.ExceptionCatch,\
+  com.shawen.common.swagger.SwaggerConfiguration,\
+  com.shawen.common.swagger.Swagger2Configuration
