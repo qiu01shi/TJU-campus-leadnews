@@ -13,6 +13,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>TJU-campus-user</module>
+        <module>TJU-campus-article</module>
     </modules>
 
     <properties>
