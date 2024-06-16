@@ -13,6 +13,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>TJU-campus-app-gateway</module>
+        <module>TJU-campus-wemedia-gateway</module>
     </modules>
     <properties>
         <maven.compiler.source>8</maven.compiler.source>

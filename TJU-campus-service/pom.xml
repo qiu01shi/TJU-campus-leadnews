@@ -14,6 +14,7 @@
     <modules>
         <module>TJU-campus-user</module>
         <module>TJU-campus-article</module>
+        <module>TJU-campus-wemedia</module>
     </modules>
 
     <properties>
