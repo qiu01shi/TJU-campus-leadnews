@@ -16,6 +16,7 @@
         <module>TJU-campus-service</module>
         <module>TJU-campus-gateway</module>
         <module>TJU-campus-test</module>
+        <module>TJU-campus-basic</module>
     </modules>
 
     <!-- 继承Spring boot工程 -->
