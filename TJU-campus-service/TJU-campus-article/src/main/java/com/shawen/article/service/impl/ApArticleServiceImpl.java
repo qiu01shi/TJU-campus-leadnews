@@ -6,6 +6,7 @@ import com.shawen.article.mapper.ApArticleConfigMapper;
 import com.shawen.article.mapper.ApArticleContentMapper;
 import com.shawen.article.mapper.ApArticleMapper;
 import com.shawen.article.service.ApArticleService;
+import com.shawen.article.service.ArticleFreemarkerService;
 import com.shawen.common.constants.ArticleConstants;
 import com.shawen.model.article.dtos.ArticleDto;
 import com.shawen.model.article.dtos.ArticleHomeDto;
@@ -85,6 +86,9 @@ public class ApArticleServiceImpl  extends ServiceImpl<ApArticleMapper, ApArticl
     @Autowired
     private ApArticleContentMapper apArticleContentMapper;
 
+    @Autowired
+    private ArticleFreemarkerService articleFreemarkerService;
+
     /**
      * 保存app端相关文章
      * @param dto
@@ -137,6 +141,8 @@ public class ApArticleServiceImpl  extends ServiceImpl<ApArticleMapper, ApArticl
             apArticleContentMapper.updateById(apArticleContent);
         }
 
+        //异步调用 生成静态文件上传到minio中
+        articleFreemarkerService.buildArticleToMinIO(apArticle,dto.getContent());
 
         //3.结果返回  文章的id
         return ResponseResult.okResult(apArticle.getId());
