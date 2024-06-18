@@ -10,12 +10,14 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
 @EnableDiscoveryClient
 @MapperScan("com.shawen.wemedia.mapper")
-@EnableFeignClients(basePackages = "com.shawen.apis.article")
+@EnableFeignClients(basePackages = {"com.shawen.apis.article", "com.shawen.apis.schedule"})
 @EnableAsync  //开启异步调用
+@EnableScheduling   // 开启调度任务
 public class WemediaApplication {
 
 
