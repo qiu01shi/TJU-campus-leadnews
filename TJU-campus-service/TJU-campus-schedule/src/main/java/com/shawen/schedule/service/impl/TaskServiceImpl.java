@@ -10,6 +10,7 @@ import com.shawen.schedule.mapper.TaskinfoLogsMapper;
 import com.shawen.schedule.mapper.TaskinfoMapper;
 import com.shawen.schedule.service.TaskService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -175,5 +176,28 @@ public class TaskServiceImpl implements TaskService {
 
         return task;
 
+    }
+
+    /**
+     * 按照类型和优先级拉取任务
+     * @return
+     */
+    @Override
+    public Task poll(int type,int priority) {
+        Task task = null;
+        try {
+            String key = type+"_"+priority;
+            String task_json = cacheService.lRightPop(ScheduleConstants.TOPIC + key);
+            if(StringUtils.isNotBlank(task_json)){
+                task = JSON.parseObject(task_json, Task.class);
+                //更新数据库信息
+                updateDb(task.getTaskId(),ScheduleConstants.EXECUTED);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            log.error("poll task exception");
+        }
+
+        return task;
     }
 }
