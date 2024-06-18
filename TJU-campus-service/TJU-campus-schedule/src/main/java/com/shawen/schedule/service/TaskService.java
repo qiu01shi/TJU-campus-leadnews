@@ -29,4 +29,6 @@ public interface TaskService {
      */
     public Task poll(int type,int priority);
 
+    public void refresh();
+
 }
