@@ -5,6 +5,7 @@ import com.shawen.model.common.dtos.ResponseResult;
 import com.shawen.model.wemedia.dtos.WmNewsDto;
 import com.shawen.model.wemedia.dtos.WmNewsPageReqDto;
 import com.shawen.model.wemedia.pojos.WmNews;
+import org.springframework.web.bind.annotation.RequestBody;
 
 public interface WmNewsService extends IService<WmNews> {
 
@@ -22,5 +23,10 @@ public interface WmNewsService extends IService<WmNews> {
      */
     public ResponseResult submitNews(WmNewsDto dto);
 
-
+    /**
+     * 文章的上下架
+     * @param dto
+     * @return
+     */
+    public ResponseResult downOrUp(WmNewsDto dto);
 }
