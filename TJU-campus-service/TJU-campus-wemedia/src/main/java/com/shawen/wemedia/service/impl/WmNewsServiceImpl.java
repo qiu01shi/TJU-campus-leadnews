@@ -8,6 +8,7 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.shawen.common.constants.WemediaConstants;
+import com.shawen.common.constants.WmNewsMessageConstants;
 import com.shawen.common.exception.CustomException;
 import com.shawen.model.common.dtos.PageResponseResult;
 import com.shawen.model.common.dtos.ResponseResult;
@@ -28,13 +29,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -283,7 +282,14 @@ public class WmNewsServiceImpl extends ServiceImpl<WmNewsMapper, WmNews> impleme
         }
     }
 
+    @Autowired
+    private KafkaTemplate<String, String> kafkaTemplate;
 
+    /**
+     * 文章上下架
+     * @param dto
+     * @return
+     */
     @Override
     public ResponseResult downOrUp(WmNewsDto dto) {
         //1.检查参数
@@ -306,6 +312,16 @@ public class WmNewsServiceImpl extends ServiceImpl<WmNewsMapper, WmNews> impleme
         if(dto.getEnable() != null && dto.getEnable() > -1 && dto.getEnable() < 2){
             update(Wrappers.<WmNews>lambdaUpdate().set(WmNews::getEnable,dto.getEnable())
                     .eq(WmNews::getId,wmNews.getId()));
+
+            // 发送消息，同志 article 修改文章的配置
+            if (wmNews.getArticleId() != null){
+                HashMap<String , Object> map = new HashMap<>();
+                map.put("articleId", wmNews.getArticleId());
+                map.put("enable", dto.getEnable());
+
+                kafkaTemplate.send(WmNewsMessageConstants.WM_NEWS_UP_OR_DOWN_TOPIC, JSON.toJSONString(map));
+            }
+
         }
         return ResponseResult.okResult(AppHttpCodeEnum.SUCCESS);
     }
