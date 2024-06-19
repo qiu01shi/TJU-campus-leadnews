@@ -1,5 +1,7 @@
 package com.shawen.kafka.listener;
 
+import com.alibaba.fastjson.JSON;
+import com.shawen.kafka.pojo.User;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
@@ -7,10 +9,11 @@ import org.springframework.util.StringUtils;
 @Component
 public class HelloListener {
 
-    @KafkaListener(topics = "shawen-topic")
+    @KafkaListener(topics = "user-topic")
     public void onMessage(String message){
         if (!StringUtils.isEmpty(message)){
-            System.out.println(message);
+            User user = JSON.parseObject(message, User.class);
+            System.out.println(user);
         }
     }
 }
