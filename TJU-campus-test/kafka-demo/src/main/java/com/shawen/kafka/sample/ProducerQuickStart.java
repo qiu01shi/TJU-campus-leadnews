@@ -22,6 +22,15 @@ public class ProducerQuickStart {
         //消息value的序列化器
         properties.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,"org.apache.kafka.common.serialization.StringSerializer");
 
+        // ack 配置   消息确认机制
+        properties.put(ProducerConfig.ACKS_CONFIG, "all");
+
+        // 重试次数
+        properties.put(ProducerConfig.RETRIES_CONFIG, 10);
+
+        // 数据压缩
+        properties.put(ProducerConfig.COMPRESSION_TYPE_CONFIG, "gzip");
+
         //2.生产者对象
         KafkaProducer<String,String> producer = new KafkaProducer<String, String>(properties);
 
