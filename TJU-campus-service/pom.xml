@@ -16,6 +16,7 @@
         <module>TJU-campus-article</module>
         <module>TJU-campus-wemedia</module>
         <module>TJU-campus-schedule</module>
+        <module>TJU-campus-search</module>
     </modules>
 
     <properties>
