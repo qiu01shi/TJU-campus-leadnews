@@ -38,6 +38,7 @@ public class ApArticleServiceImpl  extends ServiceImpl<ApArticleMapper, ApArticl
     @Override
     public ResponseResult load(Short loadtype, ArticleHomeDto dto) {
         //1.校验参数
+        // 校验 size 参数，若为 null 或 0，则设置为默认值 10，且不能超过 MAX_PAGE_SIZE
         Integer size = dto.getSize();
         if(size == null || size == 0){
             size = 10;
@@ -46,18 +47,23 @@ public class ApArticleServiceImpl  extends ServiceImpl<ApArticleMapper, ApArticl
         dto.setSize(size);
 
         //类型参数检验
+        // 校验 loadtype 参数，若不是 LOAD_MORE 或 LOAD_NEW，设置为默认值 LOAD_MORE
         if(!loadtype.equals(ArticleConstants.LOADTYPE_LOAD_MORE)&&!loadtype.equals(ArticleConstants.LOADTYPE_LOAD_NEW)){
             loadtype = ArticleConstants.LOADTYPE_LOAD_MORE;
         }
+
         //文章频道校验
+        // 校验 tag 参数，若为空则设置为默认值 DEFAULT_TAG
         if(StringUtils.isEmpty(dto.getTag())){
             dto.setTag(ArticleConstants.DEFAULT_TAG);
         }
 
-        //时间校验
+        //时间校验，若为空则设置为当前时间
         if(dto.getMaxBehotTime() == null) dto.setMaxBehotTime(new Date());
         if(dto.getMinBehotTime() == null) dto.setMinBehotTime(new Date());
+
         //2.查询数据
+        // 根据 dto 和 loadtype 参数从数据库中查询文章列表
         List<ApArticle> apArticles = apArticleMapper.loadArticleList(dto, loadtype);
 
         //3.结果封装
