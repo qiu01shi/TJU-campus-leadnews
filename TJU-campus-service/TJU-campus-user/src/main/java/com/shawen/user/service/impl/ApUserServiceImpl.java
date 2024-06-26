@@ -62,6 +62,5 @@ public class ApUserServiceImpl extends ServiceImpl<ApUserMapper, ApUser> impleme
             return ResponseResult.okResult(map);
         }
 
-
     }
 }

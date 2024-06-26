@@ -82,7 +82,7 @@ public class AppJwtUtil {
         try {
             claims.getExpiration()
                     .before(new Date());
-            // 需要自动刷新TOKEN
+            // 需要自动刷新TOKEN TODO TOKEN 自动刷新这一块需要重新设计一下！
             if((claims.getExpiration().getTime()-System.currentTimeMillis())>REFRESH_TIME*1000){
                 return -1;
             }else {
