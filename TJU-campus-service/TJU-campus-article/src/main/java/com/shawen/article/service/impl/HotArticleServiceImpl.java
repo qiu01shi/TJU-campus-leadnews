@@ -37,7 +37,7 @@ public class HotArticleServiceImpl implements HotArticleService {
     @Override
     public void computeHotArticle() {
         //1.查询前5天的文章数据, 因为数据不够，在测试的时候，将 minusDay  改为 minusYears 测试成功，后期可加数据；
-        Date dateParam = DateTime.now().minusDays(5).toDate();
+        Date dateParam = DateTime.now().minusYears(5).toDate();
         List<ApArticle> apArticleList = apArticleMapper.findArticleListByLast5days(dateParam);
 
         //2.计算文章的分值
