@@ -17,6 +17,7 @@
         <module>TJU-campus-wemedia</module>
         <module>TJU-campus-schedule</module>
         <module>TJU-campus-search</module>
+        <module>TJU-campus-behavior</module>
     </modules>
 
     <properties>

@@ -3,6 +3,7 @@ package com.shawen.article.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.shawen.model.article.dtos.ArticleDto;
 import com.shawen.model.article.dtos.ArticleHomeDto;
+import com.shawen.model.article.dtos.ArticleInfoDto;
 import com.shawen.model.article.pojos.ApArticle;
 import com.shawen.model.common.dtos.ResponseResult;
 
@@ -24,6 +25,13 @@ public interface ApArticleService extends IService<ApArticle> {
      * @return
      */
     ResponseResult saveArticle(ArticleDto dto) ;
+
+    /**
+     * 加载文章详情 数据回显
+     * @param dto
+     * @return
+     */
+    public ResponseResult loadArticleBehavior(ArticleInfoDto dto);
 
     /**
      * 加载文章列表

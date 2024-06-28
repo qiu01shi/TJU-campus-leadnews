@@ -2,4 +2,5 @@ org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
   com.shawen.common.exception.ExceptionCatch,\
   com.shawen.common.swagger.SwaggerConfiguration,\
   com.shawen.common.swagger.Swagger2Configuration,\
-  com.shawen.common.redis.CacheService
+  com.shawen.common.redis.CacheService,\
+  com.shawen.common.jackson.InitJacksonConfig
