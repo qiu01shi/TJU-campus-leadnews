@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
-@MapperScan("com.heima.schedule.mapper")
+@MapperScan("com.shawen.schedule.mapper")
 @EnableScheduling
 public class ScheduleApplication {
 
