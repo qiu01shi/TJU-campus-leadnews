@@ -1,23 +1,15 @@
-## 项目描述
-本项目旨在促进校园内的信息流通，实现学生之间的高效沟通。通过提供一个生产和阅读内容的平台，学生可以便捷地发布与获取最新的校园信息。此平台不仅有助于信息的快速传播，还能提高学生之间的互动效率，营造一个更加紧密和高效的校园社区。
-
-## 项目技术栈
-
-项目图-2024-01-09-2119.svg
-
-<img src="项目图-2024-01-09-2119.svg" alt="项目图" />
-## 项目结构
-``` shell
 .
 ├── TJU-campus-basic
 │ └── TJU-campus-starter
 │     └── src
 │         ├── main
 │         │ ├── java
-│         │ │ └── com/shawen/file
-│         │ │     └── config
-│         │ │     └── service
-│         │ │         └── impl
+│         │ │ └── com
+│         │ │     └── shawen
+│         │ │         └── file
+│         │ │             ├── config
+│         │ │             └── service
+│         │ │                 └── impl
 │         │ └── resources
 │         │     └── META-INF
 │         └── test
@@ -158,27 +150,55 @@
 │ ├── TJU-campus-schedule
 │ │ └── src
 │ │     ├── main
-│ │     ├── java
-│ │     │ └── com
-│ │     │     └── shawen
-│ │     │         └── schedule
-│ │     │             ├── feign
-│ │     │             ├── mapper
-│ │     │             └── service
-│ │     │                 └── impl
-│ │     └── resources
-│ │         └── mapper
+│ │     │ ├── java
+│ │     │ │ └── com
+│ │     │ │     └── shawen
+│ │     │ │         └── schedule
+│ │     │ │             ├── feign
+│ │     │ │             ├── mapper
+│ │     │ │             └── service
+│ │     │ │                 └── impl
+│ │     │ └── resources
+│ │     │     └── mapper
+│ │     └── test
+│ │         └── java
+│ │             └── com
+│ │                 └── shawen
+│ │                     └── schedule
+│ │                         └── service
+│ │                             └── impl
+│ ├── TJU-campus-search
+│ │ └── src
+│ │     ├── main
+│ │     │ ├── java
+│ │     │ │ └── com
+│ │     │ │     └── shawen
+│ │     │ │         └── search
+│ │     │ │             ├── config
+│ │     │ │             ├── controller
+│ │     │ │             │ └── v1
+│ │     │ │             └── service
+│ │     │ │                 └── impl
+│ │     │ └── resources
+│ │     └── test
+│ │         └── java
+│ │             └── com
+│ │                 └── heima
+│ │                     └── search
+│ │                         └── test
 │ ├── TJU-campus-user
 │ │ └── src
 │ │     ├── main
 │ │     │ ├── java
-│ │     │ │ └── com/shawen/user
-│ │     │ │     └── config
-│ │     │ │     ├── controller
-│ │     │ │     │ └── v1
-│ │     │ │     ├── mapper
-│ │     │ │     └── service
-│ │     │ │         └── impl
+│ │     │ │ └── com
+│ │     │ │     └── shawen
+│ │     │ │         └── user
+│ │     │ │             ├── config
+│ │     │ │             ├── controller
+│ │     │ │             │ └── v1
+│ │     │ │             ├── mapper
+│ │     │ │             └── service
+│ │     │ │                 └── impl
 │ │     │ └── resources
 │ │     └── test
 │ │         └── java
@@ -294,5 +314,9 @@
         ├── img
         ├── js
         └── tinymce
+            └── skins
+                └── lightgray
+                    ├── fonts
+                    └── img
 
-```
+320 directories
